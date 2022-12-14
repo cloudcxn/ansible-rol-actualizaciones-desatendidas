@@ -1,0 +1,4 @@
+---
+__actualizaciones_automaticas: "{{ __ruta_conf }}/20auto-upgrades"
+__actualizaciones_desatendidas: "{{ __ruta_conf }}/50unattended-upgrades"
+__ruta_conf: "/etc/apt/apt.conf.d"
