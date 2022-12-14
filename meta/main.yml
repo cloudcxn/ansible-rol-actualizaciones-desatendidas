@@ -6,7 +6,7 @@ galaxy_info:
 
     galaxy_tags:
         - raspbian
-        - unattended-upgrades
+        - unattended_upgrades
 
     license: MIT
     min_ansible_version: 2.1
@@ -16,4 +16,4 @@ galaxy_info:
           versions:
               - bullseye
 
-    role_name: "actualizaciones-desatendidas"
+    role_name: "actualizaciones_desatendidas"
