@@ -4,7 +4,6 @@
     cache_valid_time: 3600
     name: "unattended-upgrades"
     state: "present"
-    update_cache: true
 
 - name: "Configuración de las actualizaciones desatendidas"
   ansible.builtin.import_tasks: configuracion.yml
