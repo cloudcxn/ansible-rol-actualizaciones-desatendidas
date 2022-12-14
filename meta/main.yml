@@ -6,7 +6,7 @@ galaxy_info:
 
     galaxy_tags:
         - raspbian
-        - unattended_upgrades
+        - upgrades
 
     license: MIT
     min_ansible_version: 2.1
