@@ -1,0 +1,17 @@
+---
+- name: "Verificar que las actualizaciones desatendidas están instaladas"
+  ansible.builtin.apt:
+    cache_valid_time: 3600
+    name: "unattended-upgrades"
+    state: "present"
+    update_cache: true
+
+- name: "Configuración de las actualizaciones desatendidas"
+  ansible.builtin.import_tasks: configuracion.yml
+  notify: "Reiniciar las actualizaciones desatendidas"
+
+- name: "Copiar la configuración de las actualizaciones automáticas"
+  ansible.builtin.copy:
+    dest: "{{ __actualizaciones_automaticas }}"
+    src: 20auto-upgrades
+  notify: "Reiniciar las actualizaciones desatendidas"
