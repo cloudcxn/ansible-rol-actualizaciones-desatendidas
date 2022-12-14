@@ -1,0 +1,6 @@
+---
+- name: "Reiniciar las actualizaciones desatendidas"
+  ansible.builtin.systemd:
+    name: "unattended-upgrades"
+    state: "restarted"
+  when: not ansible_check_mode

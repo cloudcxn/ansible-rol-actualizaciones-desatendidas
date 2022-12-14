@@ -1,0 +1,33 @@
+---
+- name: "Validar la existencia del archivo de configuración"
+  ansible.builtin.stat:
+    path: "{{ __actualizaciones_desatendidas }}"
+  register: archivo_conf
+
+- name: "Habilitar el reinicio automático"
+  ansible.builtin.lineinfile:
+    line: 'Unattended-Upgrade::Automatic-Reboot "true";'
+    path: "{{ __actualizaciones_desatendidas }}"
+    regex: 'Automatic-Reboot "false"'
+  when: archivo_conf.stat.exists
+
+- name: "Configurar la hora del reinicio automático"
+  ansible.builtin.lineinfile:
+    line: 'Unattended-Upgrade::Automatic-Reboot-Time "12:00";'
+    path: "{{ __actualizaciones_desatendidas }}"
+    regex: "Automatic-Reboot-Time"
+  when: archivo_conf.stat.exists
+
+- name: "Remover las dependencias sin usar"
+  ansible.builtin.lineinfile:
+    line: 'Unattended-Upgrade::Remove-Unused-Dependencies "true";'
+    path: "{{ __actualizaciones_desatendidas }}"
+    regex: "Remove-Unused-Dependencies"
+  when: archivo_conf.stat.exists
+
+- name: "Remover los paquetes del núcleo sin usar"
+  ansible.builtin.lineinfile:
+    line: 'Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";'
+    path: "{{ __actualizaciones_desatendidas }}"
+    regex: "Remove-Unused-Kernel-Packages"
+  when: archivo_conf.stat.exists
