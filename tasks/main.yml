@@ -12,5 +12,6 @@
 - name: "Copiar la configuración de las actualizaciones automáticas"
   ansible.builtin.copy:
     dest: "{{ __actualizaciones_automaticas }}"
+    mode: 0644
     src: 20auto-upgrades
   notify: "Reiniciar las actualizaciones desatendidas"
